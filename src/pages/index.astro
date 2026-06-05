@@ -1,0 +1,163 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="codewithbre — AI Systems Engineer"
+  description="AI Systems Engineer architecting agentic workflows that keep human judgment in the loop. Writing about agent architecture, AI engineering, and the realities of building with LLMs."
+>
+  <section class="hero container">
+    <div class="hero__label">
+      <span class="mono-label">AI Systems Engineer</span>
+    </div>
+    <h1 class="hero__headline">
+      Architecting agentic workflows that keep human judgment in the loop.
+    </h1>
+    <p class="hero__bio">
+      I build production frontend and AI systems — the routing layers, verification constraints,
+      and developer tooling that make AI-assisted engineering reliable at scale. Based in Atlanta.
+      Currently building customer-facing AI tools on AWS Bedrock at Appfire.
+    </p>
+    <div class="hero__ctas">
+      <a href="/resume" class="btn btn--primary">View Resume</a>
+      <a href="/blog" class="btn btn--secondary">Read the Blog</a>
+    </div>
+  </section>
+
+  <section class="focus container">
+    <h2 class="section-label">What I write about</h2>
+    <ul class="focus__list" role="list">
+      <li>Agent architecture and workflow design</li>
+      <li>AI engineering under real-world constraints</li>
+      <li>AI-human collaboration in software development</li>
+      <li>The realities of building with LLMs in production</li>
+    </ul>
+    <a href="/blog" class="focus__link">Read on the blog &rarr;</a>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-top: var(--space-24);
+    padding-bottom: var(--space-16);
+  }
+
+  .mono-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-accent);
+    letter-spacing: 0.02em;
+  }
+
+  .hero__headline {
+    margin-top: var(--space-4);
+    font-size: clamp(1.75rem, 5vw, var(--text-4xl));
+    line-height: 1.15;
+    max-width: 38rem;
+    color: var(--color-text-primary);
+  }
+
+  .hero__bio {
+    margin-top: var(--space-6);
+    max-width: 36rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-lg);
+    line-height: 1.7;
+  }
+
+  .hero__ctas {
+    display: flex;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-3) var(--space-6);
+    border-radius: 6px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .btn--primary {
+    background-color: var(--color-accent);
+    color: #ffffff;
+    border: 1px solid var(--color-accent);
+  }
+
+  .btn--primary:hover {
+    background-color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .btn--secondary {
+    background-color: transparent;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+  }
+
+  .btn--secondary:hover {
+    border-color: var(--color-text-muted);
+    color: var(--color-text-primary);
+    text-decoration: none;
+  }
+
+  .focus {
+    padding-bottom: var(--space-16);
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-12);
+  }
+
+  .section-label {
+    font-size: var(--text-xs);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    font-weight: 600;
+    margin-bottom: var(--space-6);
+  }
+
+  .focus__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .focus__list li {
+    font-size: var(--text-base);
+    color: var(--color-text-primary);
+    padding-left: var(--space-4);
+    position: relative;
+  }
+
+  .focus__list li::before {
+    content: '/';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-weight: 600;
+  }
+
+  .focus__link {
+    display: inline-block;
+    margin-top: var(--space-6);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .focus__link:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+  }
+</style>

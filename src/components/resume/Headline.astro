@@ -1,0 +1,35 @@
+---
+interface Props {
+  role: string;
+  location: string;
+}
+
+const { role, location } = Astro.props;
+---
+
+<div class="headline">
+  <span class="headline__role mono-label">{role}</span>
+  <span class="headline__location">{location}</span>
+</div>
+
+<style>
+  .headline {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-2);
+  }
+
+  .headline__role {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-accent);
+    letter-spacing: 0.02em;
+  }
+
+  .headline__location {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+</style>

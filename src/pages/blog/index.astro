@@ -1,0 +1,180 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Base
+  title="Blog — codewithbre"
+  description="Writing on agent architecture, AI engineering, AI-human collaboration, and the realities of building with LLMs under real-world constraints."
+>
+  <div class="blog-index container">
+    <header class="blog-header">
+      <span class="mono-label">Writing</span>
+      <h1 class="blog-title">Things I've figured out building with AI</h1>
+      <p class="blog-desc">
+        Agent architecture, AI engineering, AI-human collaboration, and the realities of
+        building with LLMs under real-world constraints. Also on
+        <a href="https://substack.com/@codewithbre" target="_blank" rel="noopener noreferrer">Substack</a>.
+      </p>
+    </header>
+
+    {posts.length === 0 ? (
+      <p class="blog-empty">Posts coming soon.</p>
+    ) : (
+      <ol class="post-list" role="list">
+        {posts.map((post) => (
+          <li class="post-item">
+            <a href={`/blog/${post.slug}`} class="post-link">
+              <article class="post-card">
+                <div class="post-card__body">
+                  <h2 class="post-card__title">{post.data.title}</h2>
+                  <p class="post-card__desc">{post.data.description}</p>
+                </div>
+                <time class="post-card__date" datetime={post.data.publishDate.toISOString()}>
+                  {dateFormatter.format(post.data.publishDate)}
+                </time>
+              </article>
+            </a>
+            {post.data.substackUrl && (
+              <a
+                href={post.data.substackUrl}
+                class="post-substack"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Read "${post.data.title}" on Substack`}
+              >
+                Also on Substack &rarr;
+              </a>
+            )}
+          </li>
+        ))}
+      </ol>
+    )}
+  </div>
+</Base>
+
+<style>
+  .blog-index {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-24);
+  }
+
+  .blog-header {
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mono-label {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-accent);
+    letter-spacing: 0.02em;
+  }
+
+  .blog-title {
+    font-size: clamp(1.5rem, 4vw, var(--text-3xl));
+    margin-top: var(--space-3);
+    color: var(--color-text-primary);
+  }
+
+  .blog-desc {
+    margin-top: var(--space-4);
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    max-width: 36rem;
+    line-height: 1.7;
+  }
+
+  .blog-empty {
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  .post-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-item {
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-6) 0;
+  }
+
+  .post-item:first-child {
+    padding-top: 0;
+  }
+
+  .post-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .post-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-8);
+  }
+
+  .post-card__title {
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.35;
+    transition: color var(--transition-fast);
+  }
+
+  .post-link:hover .post-card__title {
+    color: var(--color-accent);
+  }
+
+  .post-card__desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-top: var(--space-2);
+  }
+
+  .post-card__date {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding-top: 3px;
+  }
+
+  .post-substack {
+    display: inline-block;
+    margin-top: var(--space-3);
+    font-size: var(--text-xs);
+    font-family: var(--font-mono);
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .post-substack:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  @media (max-width: 520px) {
+    .post-card {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+  }
+</style>

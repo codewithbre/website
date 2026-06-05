@@ -1,0 +1,21 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<section class="profile resume-section" aria-labelledby="profile-heading">
+  <h2 class="section-label" id="profile-heading">Profile</h2>
+  <p class="profile__text">{text}</p>
+</section>
+
+<style>
+  .profile__text {
+    font-size: var(--text-base);
+    line-height: 1.75;
+    color: var(--color-text-primary);
+    max-width: 42rem;
+  }
+</style>
