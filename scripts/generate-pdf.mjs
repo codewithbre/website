@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 import { fileURLToPath, pathToFileURL } from 'url';
-import { existsSync } from 'fs';
+import { existsSync, copyFileSync } from 'fs';
 import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -14,7 +14,10 @@ if (!existsSync(inputPath)) {
   process.exit(1);
 }
 
-const browser = await puppeteer.launch({ headless: true });
+const browser = await puppeteer.launch({
+  headless: true,
+  args: ['--no-sandbox', '--disable-setuid-sandbox'],
+});
 const page = await browser.newPage();
 
 await page.goto(pathToFileURL(inputPath).href, { waitUntil: 'networkidle0' });
@@ -28,3 +31,7 @@ await page.pdf({
 
 await browser.close();
 console.log(`generate-pdf: wrote ${outputPath}`);
+
+const publicPath = path.join(root, 'public', 'codewithbre_resume.pdf');
+copyFileSync(outputPath, publicPath);
+console.log(`generate-pdf: copied to ${publicPath}`);
