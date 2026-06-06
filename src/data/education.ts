@@ -16,7 +16,7 @@ export const education: EducationEntry[] = [
     date: 'Dec 2019',
   },
   {
-    degree: 'Professional Certificate — Geographic Information Systems',
+    degree: 'Professional Certificate, Geographic Information Systems',
     institution: 'Georgia State University',
     date: 'Dec 2019',
   },

@@ -39,7 +39,7 @@ export const jobs: Job[] = [
     period: 'Oct 2018 – Jun 2023',
     bullets: [
       'Designed and launched branded static sites for small businesses transitioning off social-only presences, integrating booking and payment systems designed to match existing brand identity.',
-      'Owned the full client lifecycle: scoping requirements, designing to brand, building, and handing off.',
+      'Owned the full client lifecycle: scoping requirements, UI design and development, and deployment.',
       'Conducted client interviews to build branding and content, and researched SEO strategies for each business.',
     ],
   },
