@@ -1,14 +1,16 @@
 ---
 interface Props {
-  text: string;
+  sentences: string[];
 }
 
-const { text } = Astro.props;
+const { sentences } = Astro.props;
 ---
 
 <section class="profile resume-section" aria-labelledby="profile-heading">
   <h2 class="section-label" id="profile-heading">Profile</h2>
-  <p class="profile__text">{text}</p>
+  {sentences.map((sentence) => (
+    <p class="profile__text">{sentence}</p>
+  ))}
 </section>
 
 <style>

@@ -1,0 +1,141 @@
+---
+title: "How I Built a System for My AI Coding Tools"
+description: "A Developer's System for AI-Assisted Engineering with Claude Code"
+publishDate: 2026-03-06
+substackUrl: "https://codewithbre.substack.com/p/how-i-built-a-system-for-my-ai-coding"
+draft: false
+---
+
+Claude Code is powerful, but without guardrails, it's also unpredictable. This is the system I built to channel it, on terms I control. These concepts can be applied to any model and any AI tool. How you use AI is more important than the tool or model.
+
+Think of this system like a high-performance race car. Extraordinary capability, a testament to human innovation, but dangerous without discipline and control. You are the driver. Your configuration is the circuit. Every task is a defined lap with a clear start, a specified route, and a finish line you can verify. Every model release is a new car. If your system is built around the driver, not the specific vehicle, you upgrade seamlessly. Nothing breaks because the driver skill transfers.
+
+Ultimately, AI is a tool, another iteration of technology that has increased human capacity.
+
+## The Problem with AI Out of the Box
+
+Claude Code and other AI coding tools give the potential of amazing output with just a few prompts, but it's not that simple in practice. In reality, it's mostly about keeping the AI tool or model aligned with the task at hand and ensuring it has enough context to complete it.
+
+You're in a constant battle of maintaining your focus while orchestrating and reviewing the files AI has created for you. Going through those changes and validating that your prompts are correctly interpreted by the code is mentally draining. Long planning sessions result in large generated code blocks to review, and the more divorced you are from the work, the less reliable that review is. The issue is that the model is doing exactly what you'd expect a highly capable but completely unconstrained executor to do: it makes decisions based on assumptions and hallucinations, presents you with the result confidently, and it's up to you to evaluate the output. There are many opportunities for gaps and errors that occur in unpredictable ways.
+
+To save my sanity, I needed a system that made outcomes more predictable. It's not realistic to nitpick how AI is implementing things at scale and expect efficient agentic workflows, but at the very least, I need confidence in the process it used to create these outcomes. Not one that stifles the model's capability, but one that channels it, so that when I give it a task, I can trust the output because I trust the constraints it operates within.
+
+A capable model doesn't need to be told how to write code. In fact, you don't want to create a system that is too restrictive and results in agents that need to be hand-held to a solution. It needs to be told what to write, what not to touch, when to stop, and what done looks like. The moment you hand over decision-making about scope, design, or what counts as complete, outcomes become less predictable, and you become dependent on the tool to know what's best.
+
+## The System's Principles and Rules
+
+### Small, scoped tasks with clear boundaries keep focus aligned for both human and AI
+
+The larger and vaguer the task, the more the model fills gaps with assumptions. If you can't articulate the task clearly, you don't understand it well enough to give it to a model. The model will inevitably fill in the gaps.
+
+### Negative constraints over positive instructions
+
+Don't tell the model how to work. Tell it what it must never do. Do not refactor unrelated code. Do not install dependencies without discussion. Do not accept a task that has two valid interpretations. Constraints are more durable than instructions because they address failure modes, not expected paths, and inadvertently give you success criteria and a clear right and wrong. We still want AI to be able to explore new paths in a predictable yet unlimited way.
+
+### The stopping behavior is the most important behavior to encode
+
+Most risks are on the side of doing too much, not too little. This system denotes a lifespan for each agent. Once intent turns into output, the agent's work is done. Each agent should only be given enough context and information to complete the task at hand.
+
+The rules are organized around failure modes: the specific ways AI-assisted development goes wrong in practice.
+
+### Task Integrity
+
+Define what a valid task looks like: a single functional change, clear intent, clear location, clear output, complete and verifiable in one pass. The model is required to reject tasks that don't meet this definition. This is the most important rule in the file, and everything else depends on it. A poorly scoped task produces a poorly scoped result regardless of how good the other rules are.
+
+### Ambiguity Resolution
+
+When a task has more than one valid interpretation, the model doesn't guess. It states what's ambiguous, lists the interpretations, and stops. This single rule eliminates an enormous category of subtle errors. In such errors, the output looks right but does the wrong thing because the model silently chose one interpretation over another.
+
+### Verification Before Execution
+
+Nothing gets coded until the model has restated what will change, which files are in scope, and what is explicitly out of scope. You have a checkpoint before anything is written.
+
+### Error Remediation
+
+Encode the stopping behavior. When something unexpected happens mid-task, the model stops, states the error, restates the original scope, and proposes a path forward without taking action. It does not expand the scope to fix an error. It does not suppress the problem to maintain progress. It surfaces the issue and waits.
+
+## The Configuration Architecture
+
+Claude Code's configuration system has three levels, and understanding how they compose is the foundation of everything else.
+
+**Global** (`~/.claude/CLAUDE.md`) holds your engineering principles. These don't change between projects. They define what the model is never allowed to do and how it reasons about every task before touching a line of code.
+
+**Project** (`.your-project/.claude/CLAUDE.md`) holds project-specific context: the architecture, patterns, and conventions of this particular codebase. The model operating contract for a specific repo.
+
+**Local** (`.claude/settings.local.json`) holds personal preferences. Not shared.
+
+The global `CLAUDE.md` is the most important file in the system. It's what makes behavior deterministic instead of model-dependent. Without it, the model does what feels right for the session. With it, the model does what you've defined. Those are very different things, with the key distinction being predictability. This shapes your agents into personal assistants who have been trained to work with you. It should be a very detailed and direct document: the absolute guardrail file that will trickle down. Global rules define the baseline. Project rules override downward when the project needs a different behavior. Local settings are your personal preferences. Each level inherits from the one above, never the other way around.
+
+*NOTE: With some configuration, the same principles translate smoothly to Cursor. The global CLAUDE.md can serve as the foundation for Cursor's always-applied rules. The commands can become Cursor skills. The agents can become Cursor subagents. The workflow loop stays consistent regardless of which surface you're on.*
+
+## Workflow Commands
+
+Commands are the interface between you and the model's behavior. Each one encodes a workflow: a specific sequence of reasoning and action appropriate to a type of task. Rather than writing the same instructions every time you invoke a command, the model knows the workflow.
+
+- `/implement`: scoped implementation with a verification loop. Restate scope, confirm, execute, summarize.
+- `/fix-bug`: locate the bug, restate the scope, and fix only that. Not the surrounding code.
+- `/analyze`: understand the architecture before planning. Read-only output.
+- `/breakdown`: decompose work into executable tasks. Humans review before anything is executed.
+- `/create-pr`: generate a PR summary with a scope compliance checklist.
+- `/quick-fix`: trivial corrections without the full verification loop. Rename, typo, import path. Self-enforcing scope gates.
+
+The `/breakdown` command is the entry point for agentic work. Before any task is executed, it runs through a breakdown to produce a sequence of valid, scoped subtasks. Each output should be a clean handoff, whether to you, to another session, or to a downstream agent in a pipeline.
+
+## Agents: Read-Only by Design
+
+Agents in this system are specialists with constrained access. Every agent is restricted to reading files, with no write access. An agent that cannot modify files cannot break anything. It can only observe and report.
+
+- `code-reviewer`: quality, consistency, adherence to project patterns.
+- `security-reviewer`: vulnerabilities, injection risks, auth gaps, data exposure.
+- `scope-auditor`: verifies that completed work stayed within CLAUDE.md boundaries. Runs post-execution.
+- `dependency-analyst`: researches packages, architectural constraints and related components for the task.
+
+The read-only constraint is not a limitation. It's what makes these agents safe to run automatically, in parallel, or as post-execution checks in a pipeline.
+
+On model selection: I run more expensive models (Opus, Sonnet) for planning, task decomposition, and ambiguity resolution, where reasoning quality matters most. Faster, cheaper models for execution once the task is well-defined. A well-scoped task is a well-scoped task regardless of which model executes it. This is how you scale throughput without scaling cost linearly.
+
+## The Workflow Loop
+
+Every task, regardless of size, runs through the same loop:
+
+1. Decompose the work into valid tasks.
+2. The model verifies each task against `CLAUDE.md`.
+3. The model restates the scope and waits for approval.
+4. You approve.
+5. The model executes.
+6. The model reports completion with a PR-ready summary.
+7. The scope auditor verifies adherence post-execution.
+
+The loop is what makes the system auditable. You can inspect and repeat any step. You know what was approved and what was executed. There's no "I think it did the right thing." There's a record, and an auditable verification process to prove it was done right.
+
+## In Practice
+
+**Starting fresh on a new codebase**: Run `analyze` command and `dependency-analyst` agent first. Understand what you're working with before writing anything. Be sure to review and understand the output before moving on.
+
+**Implementing a feature**: Never jump into implementation without planning first. Run `breakdown` on the feature description, review the task list, reject or refine anything too vague or too large. For each task, run `implement`. After each task is completed, run the `scope-auditor`, `code-reviewer`, and `security-reviewer` agents. When all tasks are complete and verified, run the `create-pr` command.
+
+**Fixing a bug**: Run the `fix-bug` command with a clear description of the observed behavior along with the circumstances which it occurs. The model analyzes, restates the scope, and fixes only what is broken. Run `scope-auditor` post-fix to confirm nothing outside the stated scope was changed.
+
+**The model encountering ambiguity**: You send a prompt like "update the API layer." The model doesn't begin. It surfaces the ambiguity: what does "update" mean here? Remove unused endpoints? Standardize error handling? It lists the interpretations, identifies what information is missing, and stops. Only after the scope is defined does it produce a scope statement and begin. This is the system working as designed, and it catches more errors than any linter.
+
+## The Limits of the System
+
+One thing I've learned building and refining this setup: the system only works for work you already understand and can predict.
+
+The commands and workflows exist because certain kinds of work have happened enough times that a pattern emerged. That pattern became a workflow. The workflow pattern got a command, and some solidified into an agent. You can build and tweak a system best around proven patterns.
+
+New and creative work is different. When you're designing something you've never built, making a technical decision for the first time, or exploring an unfamiliar domain, there's no pattern to build around. Trying to force it into the nearest existing workflow produces output that follows the process but misses the intent of the work.
+
+The right response is not to add more commands. It's to recognize the distinction and let the model engage directly when no defined workflow applies and be confident in your guardrails. The system's value lies in the predictable, repeatable work, not the exploratory, creative work that defines itself as you do it. Confusing the two makes both worse, limits creativity, and makes exploring with AI an uphill battle in a constrictive system.
+
+There is also the limitation of constant change. The system is built around how AI tools work today. As tooling continues to develop, the patterns, commands, and constraints will need to evolve with it.
+
+## Conclusion
+
+This isn't about constraining AI. It's about designing a system where the AI can do its best work within boundaries you trust.
+
+The model is not the unreliable part. The unreliable part is the translation between intentions and model execution. A well-configured system makes that handoff explicit, structured, and reversible. The model restates what it heard. You confirm or correct. Only then does it act.
+
+When the system is working, you don't wonder what the model did or hope it stayed in scope. You know, because the system requires it to tell you.
+
+The setup takes time and is not a fault-proof interpreter, but it improves the more you work with it. The payoff is every task after that.

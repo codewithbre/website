@@ -1,22 +1,40 @@
 ---
-const skills: { category: string; items: string }[] = [
-  { category: 'Languages & Frameworks', items: 'TypeScript, React, Python, C#, SQL, CSS, GraphQL, REST' },
-  { category: 'AI & Agentic Systems', items: 'AWS Bedrock, AWS Strands, Skills-based architecture, Agentic workflow design, Claude Code, Cursor, GitHub Copilot' },
-  { category: 'Frontend Platform', items: 'Module federation, Storybook, Vite, Webpack, Next.js, Nanostores, Component library authorship, Design systems' },
-  { category: 'Testing & Quality', items: 'Jest, React Testing Library, Cypress, Playwright, axe-core, Vitest, WCAG AA' },
-  { category: 'CI/CD & Tooling', items: 'GitHub Actions, Jenkins, Argo CD, Docker, Husky, lint-staged, Snyk, LaunchDarkly, DataDog' },
-  { category: 'Infrastructure & Deployment', items: 'Vercel, Cloudflare Pages, Node.js, NPM/Yarn/pnpm, Git/GitHub' },
-  { category: 'Design & CMS', items: 'Figma, TinaCMS, Sanity' },
-];
+import { Icon } from 'astro-icon/components';
+import { skills, brandColors } from '../../data/skills';
 ---
 
 <section class="skills resume-section" aria-labelledby="skills-heading">
   <h2 class="section-label" id="skills-heading">Technical Skills</h2>
   <dl class="skills__list">
-    {skills.map(({ category, items }) => (
+    {skills.map(({ category, icon, groups }) => (
       <div class="skills__row">
-        <dt class="skills__category">{category}</dt>
-        <dd class="skills__items">{items}</dd>
+        <dt class="skills__category">
+          <Icon name={icon} class="skills__cat-icon" size={14} aria-hidden="true" />
+          {category}
+        </dt>
+        <dd class="skills__groups">
+          {groups.map(({ label, chips }) => (
+            <div class="skill-group">
+              <span class="skill-group__label">{label}</span>
+              <div class="skill-group__chips">
+                {chips.map(({ name, icon: chipIcon }) => (
+                  <span class="skill-chip">
+                    {chipIcon && (
+                      <Icon
+                        name={chipIcon}
+                        class="skill-chip__icon"
+                        size={12}
+                        aria-hidden="true"
+                        style={brandColors[chipIcon] ? `color: ${brandColors[chipIcon]}` : undefined}
+                      />
+                    )}
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </dd>
       </div>
     ))}
   </dl>
@@ -26,14 +44,14 @@ const skills: { category: string; items: string }[] = [
   .skills__list {
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
+    gap: var(--space-6);
   }
 
   .skills__row {
     display: grid;
     grid-template-columns: 14rem 1fr;
-    gap: var(--space-4);
-    padding-bottom: var(--space-4);
+    gap: var(--space-6);
+    padding-bottom: var(--space-6);
     border-bottom: 1px solid var(--color-border);
   }
 
@@ -42,27 +60,93 @@ const skills: { category: string; items: string }[] = [
     padding-bottom: 0;
   }
 
+  /* ── Category label (left column) ── */
   .skills__category {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--color-text-muted);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    padding-top: 2px;
     line-height: 1.5;
+    padding-top: 2px;
+    align-self: start;
   }
 
-  .skills__items {
-    font-size: var(--text-sm);
+  .skills__cat-icon {
+    flex-shrink: 0;
+    color: var(--color-accent);
+  }
+
+  /* ── Sub-group stack (right column) ── */
+  .skills__groups {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .skill-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .skill-group__label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    opacity: 0.7;
+  }
+
+  .skill-group__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  /* ── Individual chip ── */
+  .skill-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 14px;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    font-size: var(--text-xs);
     color: var(--color-text-primary);
-    line-height: 1.65;
+    line-height: 1.5;
+    transition: border-color var(--transition-fast);
   }
 
-  @media (max-width: 600px) {
+  .skill-chip:hover {
+    border-color: var(--color-text-muted);
+  }
+
+  .skill-chip__icon {
+    flex-shrink: 0;
+    opacity: 0.85;
+    transition: opacity var(--transition-fast);
+  }
+
+  .skill-chip:hover .skill-chip__icon {
+    opacity: 1;
+  }
+
+  @media (max-width: 640px) {
     .skills__row {
       grid-template-columns: 1fr;
-      gap: var(--space-1);
+      gap: var(--space-3);
+    }
+
+    .skills__category {
+      padding-top: 0;
     }
   }
 </style>

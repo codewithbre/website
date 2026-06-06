@@ -1,62 +1,47 @@
 ---
-const education = [
-  {
-    degree: 'B.S. Computer Science',
-    institution: 'Georgia State University',
-    date: 'Dec 2019',
-  },
-  {
-    degree: 'Professional Certificate — Geographic Information Systems',
-    institution: 'Georgia State University',
-    date: 'Dec 2019',
-  },
-];
-
-const certifications = [
-  {
-    name: 'AWS Certified AI Practitioner',
-    period: 'Dec 2024 – Dec 2027',
-  },
-];
+import { education, certifications } from '../../data/education';
 ---
 
 <section class="education resume-section" aria-labelledby="education-heading">
   <h2 class="section-label" id="education-heading">Education & Certifications</h2>
-  <div class="education__grid">
-    <div>
-      {education.map(({ degree, institution, date }) => (
-        <div class="edu-item">
-          <p class="edu-item__degree">{degree}</p>
-          <p class="edu-item__meta">
-            <span>{institution}</span>
-            <span class="edu-item__sep" aria-hidden="true">&middot;</span>
-            <time>{date}</time>
-          </p>
-        </div>
-      ))}
-    </div>
-    <div>
-      {certifications.map(({ name, period }) => (
-        <div class="edu-item">
-          <p class="edu-item__degree">{name}</p>
-          <p class="edu-item__meta">
-            <time>{period}</time>
-          </p>
-        </div>
-      ))}
-    </div>
-  </div>
+  <ul class="education__list" role="list">
+    {education.map(({ degree, institution, date }) => (
+      <li class="edu-item">
+        <p class="edu-item__degree">{degree}</p>
+        <p class="edu-item__meta">
+          <span>{institution}</span>
+          <span class="edu-item__sep" aria-hidden="true">&middot;</span>
+          <time>{date}</time>
+        </p>
+      </li>
+    ))}
+    {certifications.map(({ name, period }) => (
+      <li class="edu-item">
+        <p class="edu-item__degree">{name}</p>
+        <p class="edu-item__meta">
+          <time>{period}</time>
+        </p>
+      </li>
+    ))}
+  </ul>
 </section>
 
 <style>
-  .education__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-8);
+  .education__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
   }
 
   .edu-item {
     padding-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .edu-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
   }
 
   .edu-item__degree {
@@ -79,11 +64,5 @@ const certifications = [
 
   .edu-item__sep {
     color: var(--color-border);
-  }
-
-  @media (max-width: 600px) {
-    .education__grid {
-      grid-template-columns: 1fr;
-    }
   }
 </style>

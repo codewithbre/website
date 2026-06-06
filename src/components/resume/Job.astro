@@ -1,9 +1,9 @@
 ---
 interface Props {
   title: string;
-  company: string;
+  company?: string;
   companyNote?: string;
-  location: string;
+  location?: string;
   period: string;
   bullets: string[];
 }
@@ -15,12 +15,14 @@ const { title, company, companyNote, location, period, bullets } = Astro.props;
   <header class="job__header">
     <div class="job__meta">
       <h3 class="job__title">{title}</h3>
-      <p class="job__company">
-        <strong>{company}</strong>
-        {companyNote && <span class="job__company-note">{companyNote}</span>}
-        <span class="job__sep" aria-hidden="true">&middot;</span>
-        <span>{location}</span>
-      </p>
+      {(company || location) && (
+        <p class="job__company">
+          {company && <strong>{company}</strong>}
+          {companyNote && <span class="job__company-note">{companyNote}</span>}
+          {company && location && <span class="job__sep" aria-hidden="true">&middot;</span>}
+          {location && <span>{location}</span>}
+        </p>
+      )}
     </div>
     <time class="job__period">{period}</time>
   </header>
@@ -89,7 +91,8 @@ const { title, company, companyNote, location, period, bullets } = Astro.props;
   }
 
   .job__bullets {
-    list-style: none;
+    list-style: disc;
+    padding-left: 1em;
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
@@ -99,16 +102,10 @@ const { title, company, companyNote, location, period, bullets } = Astro.props;
     font-size: var(--text-sm);
     line-height: 1.65;
     color: var(--color-text-primary);
-    padding-left: var(--space-4);
-    position: relative;
   }
 
-  .job__bullets li::before {
-    content: '/';
-    position: absolute;
-    left: 0;
+  .job__bullets li::marker {
     color: var(--color-accent);
-    font-family: var(--font-mono);
-    font-weight: 600;
+    font-size: 0.6em;
   }
 </style>

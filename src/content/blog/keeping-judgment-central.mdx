@@ -1,0 +1,63 @@
+---
+title: "Keeping Judgment Central in Your Coding Workflow"
+description: "Building a skill router for your AI coding setup is one of the highest-leverage things you can do."
+publishDate: 2026-03-18
+substackUrl: "https://codewithbre.substack.com/p/keeping-judgment-central-in-your"
+draft: false
+---
+
+AI coding tools are optimizing toward agentic workflows, reducing the decisions you have to make by routing work to dedicated workflows, automating dispatch, and running defined processes. Still, none of it addresses the judgment behind the routing, the part where you decide what the work actually is before it gets classified and sent somewhere.
+
+## Skill Routing in AI Coding Tools: How It Works and Where It Stops
+
+Building a router, a rule that maps task types to skills, is one of the highest-leverage things you can do with an AI coding setup. Instead of manually selecting the right workflow for each task, the model reads the task and routes it accordingly. The right protocol loads automatically. You stop thinking about the process and start thinking about the work.
+
+While building this it became clear that the router only works for work you've already seen.
+
+A router is a map of known territory. You can only route to destinations you've already defined.
+
+- `/implement` : Builds out a feature or function from a spec or prompt
+- `/fix-bug` : Diagnoses and resolves a specific error or broken behavior
+- `/quick-fix` : Patches a small, isolated issue without refactoring
+- `/review` : Audits code for quality, edge cases, and consistency
+- `/breakdown` : Deconstructs a complex block of code into understandable components
+
+…commands/skills that exist because that work has happened enough times that a pattern emerged. The pattern was refined into a workflow, which was then assigned a specific route.
+
+Novel work has no route. When you're figuring something out for the first time, designing a system you've never built, making a decision you haven't made before, exploring a domain you don't yet understand, there is no skill for that. There is no pre-defined process. There's no clear pattern to add to your system, and you shouldn't force one immediately.
+
+## Structured AI Workflows vs. Creative Work: Why You Need Both
+
+System mode: You know what kind of work this is. You have a protocol. The model reads the task, routes to the right skill, follows the workflow, and produces the output. Everything is predictable, auditable, and repeatable.
+
+Creative mode: You don't know what this is yet. You're exploring. The work is defining itself as you do it. No skill applies. The model needs to think alongside you, not execute a protocol at you.
+
+The instinct, especially after building a skill router, is to add more routes and skills to cover all your bases. If you define enough skills and enhance existing ones, every type of work will have a home. This instinct is wrong and leads to proactively over-engineering.
+
+More routes don't solve the problem, and adding them makes it worse. An over-routed system tries to classify everything. When it can't, it forces work into the nearest category. An exploration that isn't quite a breakdown gets /breakdown called on it prematurely. A design decision that isn't quite a bug gets routed to /fix-bug. The model follows the protocol for a task it wasn't designed for. The output looks like work but isn't.
+
+The right answer is the opposite: a router with a clear fallback. Route confidently when the work is known. Don't route when it isn't. Make the fallback explicit: when no route maps to the task at hand, engage directly.
+
+The system itself shouldn't be rigid. It should adapt and change with your workflows. When new work recurs enough to emerge as a repeatable process, a skill and fallback route can then be added to extend your system.
+
+## The Human Side of the Router
+
+Most AI tooling optimization is moving in the direction of more structure, tighter constraints, and more defined workflows. For agentic workflows, that logic makes sense, but not for human workflows.
+
+The trap is that the skills and workflows you build are evidence of work you've done before. They accumulate. And as they accumulate, they become a kind of bureaucracy: every new task gets evaluated against the existing process catalog, and anything that doesn't fit gets squeezed into the nearest thing that does. Building a system around these processes creates an environment where AI works best: structured, defined, predictable.
+
+When a skill router tries to account for everything and force all work to fit regardless of the use case, it breaks down. The better model is a lightweight, honest router with fewer routes, each well-defined, and a clear fallback for everything else. Its job is not to classify everything but to identify the work that genuinely benefits from structure and default to human judgment for the rest.
+
+The value of routing skills lies in the predictable 80%, not the unpredictable 20%, and confusing the two makes the 80% worse while failing the 20%.
+
+While patterns aren't always rigid, creating an absolute system is inhuman and suggests that the work doesn't require critical thinking and creativity. At that point you might as well create an agentic workflow and remove the human bottleneck altogether.
+
+Agent orchestration and routing work to dedicated workflows and models are solved problems, and the gaps you work around today are becoming built-in features before you've finished building the workaround in some cases. What they cannot replace is your judgment. Automating your judgment away is only possible if you have already stopped treating it as valuable in agentic development.
+
+## Cursor Implementation
+
+Rules are ambient context in Cursor, meaning that the model is always aware of available workflows without explicit invocation, making skill routing more effective because the context is already present before you've named a task, and user rules add another layer of that awareness. You can build a skill that serves as a router that maps task types to other skills, reference it in your user rules, and that skill becomes the default entry point the model routes through in every session. Cursor's auto-invocation routes still run automatically and without constraint, so the rationale behind the routing decision is absent.
+
+Suppose you do not understand what is being routed and why, this makes you a middleman between prompts and agents. That is an unnecessary bottleneck. The router, the fallback, and the skill design need to be mental models you own, not defaults you inherit from your setup. Build around the principle, not the environment, and your system becomes portable and can adapt to the rapid development happening with AI. Skills can be repurposed even when they don't map directly to the task at hand, and how you do so is a matter of your judgment, not the tool's configuration.
+
+Judgment is foundational to both the system you build and the skills you implement within it, and it is the only thing that makes your validation of what the AI produces meaningful.

@@ -5,35 +5,67 @@ import Profile from '../components/resume/Profile.astro';
 import Experience from '../components/resume/Experience.astro';
 import Skills from '../components/resume/Skills.astro';
 import Education from '../components/resume/Education.astro';
+import { Icon } from 'astro-icon/components';
 import '../styles/resume.css';
 ---
 
 <Base
   title="Resume — codewithbre"
-  description="AI Systems Engineer with 6+ years building production frontend and full stack applications. Specializing in agentic workflow architecture and frontend platform engineering."
+  description="Frontend-focused software engineer building agentic AI solutions. Engineers the agentic layer: workflow design, constraints, and the verification logic that keeps AI solutions reliable. Engineers the frontend layer, centering architecture, accessibility, and user experience."
 >
   <div class="resume-page container">
     <div class="resume-header">
-      <Headline
-        role="AI Systems Engineer"
-        location="Atlanta, GA"
-      />
+      <Headline role="Software Engineer | Agentic AI Engineer" />
       <h1 class="resume-name">codewithbre</h1>
       <div class="resume-links">
-        <a href="https://linkedin.com/in/codewithbre" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://linkedin.com/in/codewithbre" target="_blank" rel="noopener noreferrer" class="resume-link">
+          <Icon name="simple-icons:linkedin" size={13} aria-hidden="true" />
+          LinkedIn
+        </a>
         <span aria-hidden="true">&middot;</span>
-        <a href="https://substack.com/@codewithbre" target="_blank" rel="noopener noreferrer">Substack</a>
+        <a href="https://substack.com/@codewithbre" target="_blank" rel="noopener noreferrer" class="resume-link">
+          <Icon name="simple-icons:substack" size={13} aria-hidden="true" />
+          Substack
+        </a>
         <span aria-hidden="true">&middot;</span>
-        <a href="/resume.pdf" class="resume-download" download>Download PDF</a>
+        <a href="/resume.pdf" class="resume-link resume-download" download>
+          <Icon name="lucide:download" size={13} aria-hidden="true" />
+          Download PDF
+        </a>
       </div>
     </div>
 
-    <Profile text="AI Systems Engineer with 6+ years building production frontend and full stack applications. Specializes in agentic workflow architecture — designing the constraints, routing, and verification layers that make AI-assisted development reliable at scale. Brings product and design judgment into engineering decisions, operating across the full arc from ideation through tested, shipped code. Currently building customer-facing AI tools on AWS Bedrock; experienced in React platform engineering, design system ownership, shared package ecosystems, and cross-team frontend infrastructure." />
+    <Profile sentences={[
+      'Frontend-focused software engineer building agentic AI solutions.',
+      'Engineers the agentic layer: workflow design, constraints, and the verification logic that keeps AI solutions reliable.',
+      'Engineers the frontend layer, centering architecture, accessibility, and user experience.',
+    ]} />
     <Experience />
     <Skills />
     <Education />
   </div>
 </Base>
+
+<script>
+  const sections = document.querySelectorAll<HTMLElement>('.resume-section');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.06, rootMargin: '0px 0px -24px 0px' }
+  );
+
+  sections.forEach((el) => {
+    el.classList.add('will-reveal');
+    observer.observe(el);
+  });
+</script>
 
 <style>
   .resume-page {
@@ -62,6 +94,12 @@ import '../styles/resume.css';
     gap: var(--space-3);
     margin-top: var(--space-3);
     flex-wrap: wrap;
+  }
+
+  .resume-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
   }
 
   .resume-links a {

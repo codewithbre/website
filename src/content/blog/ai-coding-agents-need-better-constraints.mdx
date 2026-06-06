@@ -1,0 +1,55 @@
+---
+title: "AI Coding Agents Don't Need Better Prompts, They Need Better Constraints"
+description: "Stop optimizing your prompts. Start designing your system."
+publishDate: 2026-02-24
+substackUrl: "https://codewithbre.substack.com/p/ai-coding-agents-dont-need-better"
+draft: false
+---
+
+## The Two Types of Leaks In AI Workflows
+
+Technical leaks are implementation breakdowns: bugs, errors, and failures in the code itself. Contextual leaks are breakdowns in meaning: the output works, but it's wrong for the product, the user, or the situation. AI can diagnose and fix technical leaks. It can't tell you which leaks are consequential to your product, because that requires understanding the stakes, the users, and the context around the system.
+
+- If a human understands the technical, she can solve both the technical and contextual leaks
+- If a human understands the context, she can properly delegate to AI the diagnostic and solution
+- Without either, human review is pointless. You're approving output you can't evaluate.
+
+### What does Human-AI Collaboration Look Like?
+
+- **Option A:** Humans give AI a high-level goal, AI does its magic, and humans approve the final result
+- **Option B:** Human and AI collaborate throughout, with human approval through to the final result
+- **Option C (ideal):** The human owns the system, the AI operates within it. The human's role isn't approving a final result or collaborating throughout, but designing the constraints, decomposing the work, and verifying the output.
+
+Overall, there should be no fixed line drawn between humans and AI when collaborating.
+
+## Scoping the Work
+
+An agent can't be an equal replacement for anyone's judgment. Provide guardrails and break down tasks in such a way that you believe an agent can handle without oversight. AI excels when the task is small and there's little margin for error, assumptions, and hallucinations. The larger and vaguer the task, the more fragile your system becomes.
+
+Specify where agents can go with their reasoning. How and why are we using AI? Build around a problem you've solved or fail fast. Do not insert AI otherwise. "A bad task definition doesn't just produce a bad output. It produces a confident bad output that you now have to diagnose, untangle, and redo." A well-scoped task feeds the next well-scoped task. A poorly scoped one poisons everything downstream.
+
+Scoping doesn't mean micromanaging. If you have to explicitly tell the model which functions to touch, that's a bottleneck. The model owns the "what to change" analysis. You own the approval for "how to change it." The model should analyze the codebase, understand the architecture, and scope the changes to the relevant area and its direct dependencies.
+
+## In Practice
+
+**Valid task:** "Build a blue button for the CTA of this page in this section with the following details."
+
+A clear intent with a clear output that the agent is able to produce. A capable model won't introduce breaking changes or add unnecessary complexities.
+
+**Not a valid task:** "Build a feature that does stock analysis."
+
+This requires architectural decisions, technology selection, feature scoping, and design, none of which have been provided. This is a project, not a task. Projects are decomposed before handing them off to an agent to build.
+
+Even within a valid task, certain categories of action should never be autonomous. The model shouldn't install dependencies or run bash commands unless they're required to complete the task. Scope the task, scope the actions, and define what the model is not allowed to do. The boundaries matter as much as the decomposition.
+
+The quality of your decomposition is a measure of your engineering skill in this system. Bad decomposition produces confident results in the wrong thing.
+
+> "You do not rise to the level of your goals. You fall to the level of your systems."
+>
+> James Clear, *Atomic Habits*
+
+## Maintaining Judgment
+
+Read diffs critically, don't just approve them. The moment you start rubber-stamping agent output, your review loses value. Build from scratch periodically on throwaway projects and review fundamental concepts to refresh knowledge.
+
+Write the spec before the agent touches it, then compare your mental model to what it produced. The gap between your expectation and the output is your judgment health metric. Own the failure modes. When agent output breaks, diagnose it yourself before re-prompting and design a remediation process. That's where the learning still lives.
