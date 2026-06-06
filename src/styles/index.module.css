@@ -72,6 +72,21 @@
   color: #ffffff;
 }
 
+/* Dark mode: #3b82f6 on white is only 3.4:1 — swap to a darker blue that clears 4.5:1 */
+:is([data-theme="dark"]) .btnPrimary,
+:is([data-theme="dark"]) .btnPrimary:hover {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .btnPrimary,
+  :root:not([data-theme="light"]) .btnPrimary:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+  }
+}
+
 .btnSecondary {
   background-color: transparent;
   color: var(--color-text-primary);

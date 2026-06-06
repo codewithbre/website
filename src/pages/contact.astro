@@ -253,6 +253,20 @@ import { Icon } from 'astro-icon/components';
     padding: var(--space-3) var(--space-6);
     background-color: var(--color-accent);
     color: #fff;
+  }
+
+  /* Dark mode: #3b82f6 on white is only 3.4:1 — swap to darker blue */
+  :is([data-theme="dark"]) .form-submit {
+    background-color: #1d4ed8;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .form-submit {
+      background-color: #1d4ed8;
+    }
+  }
+
+  .form-submit {
     font-size: var(--text-sm);
     font-weight: 600;
     font-family: inherit;

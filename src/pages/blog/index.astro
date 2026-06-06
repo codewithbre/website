@@ -28,6 +28,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
         class="blog-handle"
         target="_blank"
         rel="noopener noreferrer"
+        aria-label="Follow codewithbre on Substack (opens in new tab)"
       >
         <Icon name="simple-icons:substack" class="blog-handle__icon" size={13} aria-hidden="true" />
         Follow codewithbre on Substack
@@ -57,7 +58,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
                 class="post-substack"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Read "${post.data.title}" on Substack`}
+                aria-label={`Read "${post.data.title}" on Substack (opens in new tab)`}
               >
                 <Icon name="simple-icons:substack" class="post-substack__icon" size={12} aria-hidden="true" />
                 Substack
