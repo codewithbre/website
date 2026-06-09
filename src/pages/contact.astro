@@ -3,10 +3,7 @@ import Base from '../layouts/Base.astro';
 import { Icon } from 'astro-icon/components';
 ---
 
-<Base
-  title="Contact | codewithbre"
-  description="Get in touch with codewithbre."
->
+<Base title="Contact | codewithbre" description="Get in touch with codewithbre.">
   <div class="contact-page container">
     <div class="contact-header">
       <h1 class="contact-title">Get in touch</h1>
@@ -25,12 +22,20 @@ import { Icon } from 'astro-icon/components';
 
       <div class="form-group">
         <label for="email" class="form-label">Email</label>
-        <input id="email" name="email" type="email" class="form-input" required autocomplete="email" />
+        <input
+          id="email"
+          name="email"
+          type="email"
+          class="form-input"
+          required
+          autocomplete="email"
+        />
       </div>
 
       <div class="form-group">
         <label for="message" class="form-label">Message</label>
-        <textarea id="message" name="message" rows={6} class="form-input form-textarea" required></textarea>
+        <textarea id="message" name="message" rows={6} class="form-input form-textarea" required
+        ></textarea>
       </div>
 
       <div id="form-status" class="form-status" role="alert" aria-live="polite" hidden></div>
@@ -74,7 +79,8 @@ import { Icon } from 'astro-icon/components';
       statusEl.hidden = false;
       form.reset();
     } catch {
-      statusEl.textContent = 'Something went wrong. Try again or email me directly at codewithbre@gmail.com.';
+      statusEl.textContent =
+        'Something went wrong. Try again or email me directly at codewithbre@gmail.com.';
       statusEl.classList.add('form-status--error');
       statusEl.hidden = false;
     } finally {
@@ -87,13 +93,25 @@ import { Icon } from 'astro-icon/components';
 <style>
   /* ── Entrance animations ── */
   @keyframes fade-up {
-    from { opacity: 0; transform: translateY(14px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @keyframes status-in {
-    from { opacity: 0; transform: translateY(-5px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   /* ── Layout ── */
@@ -186,7 +204,9 @@ import { Icon } from 'astro-icon/components';
     font-size: var(--text-sm);
     font-family: inherit;
     line-height: 1.5;
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    transition:
+      border-color var(--transition-fast),
+      box-shadow var(--transition-fast);
     outline: none;
   }
 
@@ -201,7 +221,10 @@ import { Icon } from 'astro-icon/components';
   .form-input:-webkit-autofill:focus {
     -webkit-text-fill-color: var(--color-text-primary);
     -webkit-box-shadow: 0 0 0 9999px var(--color-bg) inset;
-    transition: background-color 9999s ease, box-shadow var(--transition-fast), border-color var(--transition-fast);
+    transition:
+      background-color 9999s ease,
+      box-shadow var(--transition-fast),
+      border-color var(--transition-fast);
   }
 
   .form-textarea {
@@ -228,13 +251,13 @@ import { Icon } from 'astro-icon/components';
     border: 1px solid color-mix(in srgb, #ef4444 30%, transparent);
   }
 
-  :is([data-theme="dark"], :root:not([data-theme="light"])) .form-status--success {
+  :is([data-theme='dark'], :root:not([data-theme='light'])) .form-status--success {
     color: #86efac;
     background-color: color-mix(in srgb, #22c55e 12%, transparent);
     border-color: color-mix(in srgb, #22c55e 20%, transparent);
   }
 
-  :is([data-theme="dark"], :root:not([data-theme="light"])) .form-status--error {
+  :is([data-theme='dark'], :root:not([data-theme='light'])) .form-status--error {
     color: #fca5a5;
     background-color: color-mix(in srgb, #ef4444 12%, transparent);
     border-color: color-mix(in srgb, #ef4444 20%, transparent);
@@ -256,12 +279,12 @@ import { Icon } from 'astro-icon/components';
   }
 
   /* Dark mode: #3b82f6 on white is only 3.4:1 — swap to darker blue */
-  :is([data-theme="dark"]) .form-submit {
+  :is([data-theme='dark']) .form-submit {
     background-color: #1d4ed8;
   }
 
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .form-submit {
+    :root:not([data-theme='light']) .form-submit {
       background-color: #1d4ed8;
     }
   }

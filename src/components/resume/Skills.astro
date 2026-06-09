@@ -6,37 +6,41 @@ import { skills, brandColors } from '../../data/skills';
 <section class="skills resume-section" aria-labelledby="skills-heading">
   <h2 class="section-label" id="skills-heading">Technical Skills</h2>
   <dl class="skills__list">
-    {skills.map(({ category, icon, groups }) => (
-      <div class="skills__row">
-        <dt class="skills__category">
-          <Icon name={icon} class="skills__cat-icon" size={14} aria-hidden="true" />
-          {category}
-        </dt>
-        <dd class="skills__groups">
-          {groups.map(({ label, chips }) => (
-            <div class="skill-group">
-              <span class="skill-group__label">{label}</span>
-              <div class="skill-group__chips">
-                {chips.map(({ name, icon: chipIcon }) => (
-                  <span class="skill-chip">
-                    {chipIcon && (
-                      <Icon
-                        name={chipIcon}
-                        class="skill-chip__icon"
-                        size={12}
-                        aria-hidden="true"
-                        style={brandColors[chipIcon] ? `color: ${brandColors[chipIcon]}` : undefined}
-                      />
-                    )}
-                    {name}
-                  </span>
-                ))}
+    {
+      skills.map(({ category, icon, groups }) => (
+        <div class="skills__row">
+          <dt class="skills__category">
+            <Icon name={icon} class="skills__cat-icon" size={14} aria-hidden="true" />
+            {category}
+          </dt>
+          <dd class="skills__groups">
+            {groups.map(({ label, chips }) => (
+              <div class="skill-group">
+                <span class="skill-group__label">{label}</span>
+                <div class="skill-group__chips">
+                  {chips.map(({ name, icon: chipIcon }) => (
+                    <span class="skill-chip">
+                      {chipIcon && (
+                        <Icon
+                          name={chipIcon}
+                          class="skill-chip__icon"
+                          size={12}
+                          aria-hidden="true"
+                          style={
+                            brandColors[chipIcon] ? `color: ${brandColors[chipIcon]}` : undefined
+                          }
+                        />
+                      )}
+                      {name}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </dd>
-      </div>
-    ))}
+            ))}
+          </dd>
+        </div>
+      ))
+    }
   </dl>
 </section>
 

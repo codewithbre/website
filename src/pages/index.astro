@@ -13,15 +13,30 @@ import styles from '../styles/index.module.css';
     <h1 class={styles.heroHeadline}>
       Architecting agentic workflows that keep human judgment in the loop.
     </h1>
-    <p class={styles.heroBio}>Frontend-focused software engineer building agentic AI solutions, centering architecture, accessibility, and user experience.</p>
+    <p class={styles.heroBio}>
+      Frontend-focused software engineer building agentic AI solutions, centering architecture,
+      accessibility, and user experience.
+    </p>
     <div class={styles.heroCtas}>
       <a href="/resume" class:list={[styles.btn, styles.btnPrimary]}>View Resume</a>
       <a href="/contact" class:list={[styles.btn, styles.btnSecondary]}>Get in Touch</a>
-      <a href="https://linkedin.com/in/codewithbre" target="_blank" rel="noopener noreferrer" class:list={[styles.btn, styles.btnSecondary]} aria-label="LinkedIn (opens in new tab)">
+      <a
+        href="https://linkedin.com/in/codewithbre"
+        target="_blank"
+        rel="noopener noreferrer"
+        class:list={[styles.btn, styles.btnSecondary]}
+        aria-label="LinkedIn (opens in new tab)"
+      >
         <Icon name="simple-icons:linkedin" size={13} aria-hidden="true" />
         LinkedIn
       </a>
-      <a href="https://github.com/codewithbre" target="_blank" rel="noopener noreferrer" class:list={[styles.btn, styles.btnSecondary]} aria-label="GitHub (opens in new tab)">
+      <a
+        href="https://github.com/codewithbre"
+        target="_blank"
+        rel="noopener noreferrer"
+        class:list={[styles.btn, styles.btnSecondary]}
+        aria-label="GitHub (opens in new tab)"
+      >
         <Icon name="simple-icons:github" size={13} aria-hidden="true" />
         GitHub
       </a>
@@ -31,9 +46,8 @@ import styles from '../styles/index.module.css';
   <section class:list={[styles.blogBand, 'container']}>
     <span class={styles.blogLabel}>What I write about</span>
     <p class={styles.blogBandDesc}>
-      Agent architecture and workflow design, AI engineering under real-world constraints,
-      AI-human collaboration in software development, and the realities of building with LLMs
-      in production.
+      Agent architecture and workflow design, AI engineering under real-world constraints, AI-human
+      collaboration in software development, and the realities of building with LLMs in production.
     </p>
     <a href="/blog" class:list={[styles.btn, styles.btnSecondary]}>Read the Blog</a>
   </section>

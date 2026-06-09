@@ -3,12 +3,12 @@ import { skills } from '../data/skills';
 import { jobs } from '../data/experience';
 import { education, certifications } from '../data/education';
 
-const flatSkills = skills.map(row => ({
+const flatSkills = skills.map((row) => ({
   category: row.category,
-  chips: row.groups.flatMap(g => g.chips.map(c => c.name)),
+  chips: row.groups.flatMap((g) => g.chips.map((c) => c.name)),
 }));
 
-const jobRows = jobs.map(job => {
+const jobRows = jobs.map((job) => {
   const parts: string[] = [];
   if (job.company) parts.push(`${job.company}${job.companyNote ? ` ${job.companyNote}` : ''}`);
   if (job.location) parts.push(job.location);
@@ -16,226 +16,243 @@ const jobRows = jobs.map(job => {
 });
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="robots" content="noindex" />
-  <title>Briana Peppers — Resume</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
+    <title>Briana Peppers — Resume</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    body {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      font-size: 10pt;
-      color: #1a1a1a;
-      line-height: 1.45;
-    }
+      body {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10pt;
+        color: #1a1a1a;
+        line-height: 1.45;
+      }
 
-    /* ── Header ── */
-    header {
-      margin-bottom: 8pt;
-    }
+      /* ── Header ── */
+      header {
+        margin-bottom: 8pt;
+      }
 
-    .name-line {
-      font-size: 13pt;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: #000;
-    }
+      .name-line {
+        font-size: 13pt;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: #000;
+      }
 
-    .contact {
-      font-size: 9pt;
-      color: #444;
-      margin-top: 4pt;
-    }
+      .contact {
+        font-size: 9pt;
+        color: #444;
+        margin-top: 4pt;
+      }
 
-    /* ── Sections ── */
-    section {
-      margin-bottom: 10pt;
-    }
+      /* ── Sections ── */
+      section {
+        margin-bottom: 10pt;
+      }
 
-    h2 {
-      font-size: 9.5pt;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: #000;
-      border-bottom: 1px solid #999;
-      padding-bottom: 2pt;
-      margin-bottom: 6pt;
-    }
+      h2 {
+        font-size: 9.5pt;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: #000;
+        border-bottom: 1px solid #999;
+        padding-bottom: 2pt;
+        margin-bottom: 6pt;
+      }
 
-    /* ── Skills ── */
-    .skill-row {
-      display: flex;
-      gap: 4pt;
-      margin-bottom: 3pt;
-      font-size: 9pt;
-      line-height: 1.4;
-    }
+      /* ── Skills ── */
+      .skill-row {
+        display: flex;
+        gap: 4pt;
+        margin-bottom: 3pt;
+        font-size: 9pt;
+        line-height: 1.4;
+      }
 
-    .skill-label {
-      font-weight: 600;
-      white-space: nowrap;
-      min-width: 170pt;
-      color: #1a1a1a;
-      flex-shrink: 0;
-    }
+      .skill-label {
+        font-weight: 600;
+        white-space: nowrap;
+        min-width: 170pt;
+        color: #1a1a1a;
+        flex-shrink: 0;
+      }
 
-    .skill-values {
-      color: #333;
-    }
+      .skill-values {
+        color: #333;
+      }
 
-    /* ── Experience ── */
-    .job {
-      margin-bottom: 8pt;
-      page-break-inside: avoid;
-    }
+      /* ── Experience ── */
+      .job {
+        margin-bottom: 8pt;
+        page-break-inside: avoid;
+      }
 
-    .job-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 8pt;
-      margin-bottom: 4pt;
-    }
+      .job-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 8pt;
+        margin-bottom: 4pt;
+      }
 
-    .job-meta {
-      flex: 1;
-    }
+      .job-meta {
+        flex: 1;
+      }
 
-    .job-title {
-      font-weight: 700;
-      font-size: 10pt;
-      color: #000;
-    }
+      .job-title {
+        font-weight: 700;
+        font-size: 10pt;
+        color: #000;
+      }
 
-    .job-company {
-      color: #333;
-      font-size: 9.5pt;
-    }
+      .job-company {
+        color: #333;
+        font-size: 9.5pt;
+      }
 
-    .job-period {
-      font-size: 9pt;
-      color: #444;
-      white-space: nowrap;
-      text-align: right;
-    }
+      .job-period {
+        font-size: 9pt;
+        color: #444;
+        white-space: nowrap;
+        text-align: right;
+      }
 
-    ul {
-      padding-left: 12pt;
-      list-style: disc;
-    }
+      ul {
+        padding-left: 12pt;
+        list-style: disc;
+      }
 
-    li {
-      margin-bottom: 1pt;
-      font-size: 9.25pt;
-      color: #222;
-      line-height: 1.4;
-    }
+      li {
+        margin-bottom: 1pt;
+        font-size: 9.25pt;
+        color: #222;
+        line-height: 1.4;
+      }
 
-    /* ── Education ── */
-    .edu-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 8pt;
-      margin-bottom: 3pt;
-      font-size: 9pt;
-    }
+      /* ── Education ── */
+      .edu-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 8pt;
+        margin-bottom: 3pt;
+        font-size: 9pt;
+      }
 
-    .edu-label {
-      font-weight: 600;
-      color: #1a1a1a;
-    }
+      .edu-label {
+        font-weight: 600;
+        color: #1a1a1a;
+      }
 
-    .edu-degree {
-      color: #333;
-      font-size: 9.25pt;
-    }
+      .edu-degree {
+        color: #333;
+        font-size: 9.25pt;
+      }
 
-    .edu-date {
-      white-space: nowrap;
-      color: #444;
-      font-size: 9pt;
-    }
+      .edu-date {
+        white-space: nowrap;
+        color: #444;
+        font-size: 9pt;
+      }
 
-    .cert-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 8pt;
-      margin-bottom: 4pt;
-      font-size: 9pt;
-    }
+      .cert-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 8pt;
+        margin-bottom: 4pt;
+        font-size: 9pt;
+      }
 
-    .cert-name {
-      color: #1a1a1a;
-    }
+      .cert-name {
+        color: #1a1a1a;
+      }
 
-    .cert-period {
-      white-space: nowrap;
-      color: #444;
-      font-size: 9pt;
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="name-line">Briana Peppers | Software Engineer | Agentic AI Engineer</div>
-    <div class="contact">
-      codewithbre@gmail.com &nbsp;·&nbsp;
-      linkedin.com/in/codewithbre &nbsp;·&nbsp;
-      codewithbre.com
-    </div>
-  </header>
-
-  <section>
-    <h2>Technical Skills</h2>
-    {flatSkills.map(row => (
-      <div class="skill-row">
-        <span class="skill-label">{row.category}:</span>
-        <span class="skill-values">{row.chips.join(', ')}</span>
+      .cert-period {
+        white-space: nowrap;
+        color: #444;
+        font-size: 9pt;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="name-line">Briana Peppers | Software Engineer | Agentic AI Engineer</div>
+      <div class="contact">
+        codewithbre@gmail.com &nbsp;·&nbsp; linkedin.com/in/codewithbre &nbsp;·&nbsp;
+        codewithbre.com
       </div>
-    ))}
-  </section>
+    </header>
 
-  <section>
-    <h2>Work Experience</h2>
-    {jobRows.map(job => (
-      <div class="job">
-        <div class="job-header">
-          <div class="job-meta">
-            <span class="job-title">{job.title}</span><span class="job-company">{job.companySuffix}</span>
+    <section>
+      <h2>Technical Skills</h2>
+      {
+        flatSkills.map((row) => (
+          <div class="skill-row">
+            <span class="skill-label">{row.category}:</span>
+            <span class="skill-values">{row.chips.join(', ')}</span>
           </div>
-          <div class="job-period">{job.period}</div>
-        </div>
-        <ul>
-          {job.bullets.map(b => <li>{b}</li>)}
-        </ul>
-      </div>
-    ))}
-  </section>
+        ))
+      }
+    </section>
 
-  <section>
-    <h2>Education &amp; Certifications</h2>
-    {education.map(e => (
-      <div class="edu-row">
-        <div>
-          <span class="edu-label">{e.institution}</span><span class="edu-degree">, {e.degree}</span>
-        </div>
-        <div class="edu-date">{e.date}</div>
-      </div>
-    ))}
-    {certifications.map(c => (
-      <div class="cert-row">
-        <span class="cert-name">{c.name}</span>
-        <span class="cert-period">{c.period}</span>
-      </div>
-    ))}
-  </section>
+    <section>
+      <h2>Work Experience</h2>
+      {
+        jobRows.map((job) => (
+          <div class="job">
+            <div class="job-header">
+              <div class="job-meta">
+                <>
+                  <span class="job-title">{job.title}</span>
+                  <span class="job-company">{job.companySuffix}</span>
+                </>
+              </div>
+              <div class="job-period">{job.period}</div>
+            </div>
+            <ul>
+              {job.bullets.map((b) => (
+                <li>{b}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </section>
 
-</body>
+    <section>
+      <h2>Education &amp; Certifications</h2>
+      {
+        education.map((e) => (
+          <div class="edu-row">
+            <div>
+              <>
+                <span class="edu-label">{e.institution}</span>
+                <span class="edu-degree">, {e.degree}</span>
+              </>
+            </div>
+            <div class="edu-date">{e.date}</div>
+          </div>
+        ))
+      }
+      {
+        certifications.map((c) => (
+          <div class="cert-row">
+            <span class="cert-name">{c.name}</span>
+            <span class="cert-period">{c.period}</span>
+          </div>
+        ))
+      }
+    </section>
+  </body>
 </html>

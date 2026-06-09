@@ -5,24 +5,30 @@ import { education, certifications } from '../../data/education';
 <section class="education resume-section" aria-labelledby="education-heading">
   <h2 class="section-label" id="education-heading">Education & Certifications</h2>
   <ul class="education__list" role="list">
-    {education.map(({ degree, institution, date }) => (
-      <li class="edu-item">
-        <p class="edu-item__degree">{degree}</p>
-        <p class="edu-item__meta">
-          <span>{institution}</span>
-          <span class="edu-item__sep" aria-hidden="true">&middot;</span>
-          <time>{date}</time>
-        </p>
-      </li>
-    ))}
-    {certifications.map(({ name, period }) => (
-      <li class="edu-item">
-        <p class="edu-item__degree">{name}</p>
-        <p class="edu-item__meta">
-          <time>{period}</time>
-        </p>
-      </li>
-    ))}
+    {
+      education.map(({ degree, institution, date }) => (
+        <li class="edu-item">
+          <p class="edu-item__degree">{degree}</p>
+          <p class="edu-item__meta">
+            <span>{institution}</span>
+            <span class="edu-item__sep" aria-hidden="true">
+              &middot;
+            </span>
+            <time>{date}</time>
+          </p>
+        </li>
+      ))
+    }
+    {
+      certifications.map(({ name, period }) => (
+        <li class="edu-item">
+          <p class="edu-item__degree">{name}</p>
+          <p class="edu-item__meta">
+            <time>{period}</time>
+          </p>
+        </li>
+      ))
+    }
   </ul>
 </section>
 
