@@ -2,9 +2,9 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 const pages = [
-  { name: 'home',    path: '/' },
-  { name: 'resume',  path: '/resume' },
-  { name: 'blog',    path: '/blog' },
+  { name: 'home', path: '/' },
+  { name: 'resume', path: '/resume' },
+  { name: 'blog', path: '/blog' },
   { name: 'contact', path: '/contact' },
 ];
 
@@ -22,9 +22,7 @@ for (const { name, path } of pages) {
     const page = await context.newPage();
 
     await page.goto(path);
-    await page.evaluate(() =>
-      document.documentElement.setAttribute('data-theme', 'light')
-    );
+    await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'light'));
     await waitForTheme(page, 'rgb(255, 255, 255)');
 
     const results = await new AxeBuilder({ page })
@@ -40,9 +38,7 @@ for (const { name, path } of pages) {
     const page = await context.newPage();
 
     await page.goto(path);
-    await page.evaluate(() =>
-      document.documentElement.setAttribute('data-theme', 'dark')
-    );
+    await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'dark'));
     await waitForTheme(page, 'rgb(17, 24, 39)');
 
     const results = await new AxeBuilder({ page })

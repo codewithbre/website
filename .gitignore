@@ -1,4 +1,5 @@
 dist/
+public/codewithbre_resume.pdf
 node_modules/
 .env
 .env.*

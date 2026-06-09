@@ -19,10 +19,7 @@ test('all form inputs have an associated label', async ({ page }) => {
       hasLabel = (await label.count()) > 0;
     }
 
-    expect(
-      hasLabel,
-      `Input missing label: ${await input.evaluate(n => n.outerHTML)}`
-    ).toBe(true);
+    expect(hasLabel, `Input missing label: ${await input.evaluate((n) => n.outerHTML)}`).toBe(true);
   }
 });
 
@@ -41,11 +38,7 @@ test('submit button has an accessible name', async ({ page }) => {
   await expect(submit).toBeAttached();
 
   const name = await submit.evaluate((el) => {
-    return (
-      el.textContent?.trim() ||
-      el.getAttribute('aria-label') ||
-      ''
-    );
+    return el.textContent?.trim() || el.getAttribute('aria-label') || '';
   });
   expect(name.length).toBeGreaterThan(0);
 });

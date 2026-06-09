@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 
 const pages = [
-  { name: 'home',    path: '/' },
-  { name: 'resume',  path: '/resume' },
-  { name: 'blog',    path: '/blog' },
+  { name: 'home', path: '/' },
+  { name: 'resume', path: '/resume' },
+  { name: 'blog', path: '/blog' },
   { name: 'contact', path: '/contact' },
 ];
 
@@ -19,13 +19,16 @@ for (const { name, path } of pages) {
 
     const levels = await page.evaluate(() =>
       Array.from(document.querySelectorAll('h1,h2,h3,h4,h5,h6')).map((el) =>
-        parseInt(el.tagName[1], 10)
-      )
+        parseInt(el.tagName[1], 10),
+      ),
     );
 
     for (let i = 1; i < levels.length; i++) {
       const diff = levels[i] - levels[i - 1];
-      expect(diff, `Heading level skipped: h${levels[i - 1]} → h${levels[i]} on ${path}`).toBeLessThanOrEqual(1);
+      expect(
+        diff,
+        `Heading level skipped: h${levels[i - 1]} → h${levels[i]} on ${path}`,
+      ).toBeLessThanOrEqual(1);
     }
   });
 
@@ -41,7 +44,7 @@ for (const { name, path } of pages) {
 
       expect(
         hasAlt || isDecorative,
-        `Image missing alt attribute on ${path}: ${await img.evaluate(n => n.outerHTML)}`
+        `Image missing alt attribute on ${path}: ${await img.evaluate((n) => n.outerHTML)}`,
       ).toBe(true);
     }
   });
@@ -57,7 +60,10 @@ for (const { name, path } of pages) {
         const ariaLabelledby = el.getAttribute('aria-labelledby') ?? '';
         return text || ariaLabel || ariaLabelledby;
       });
-      expect(name.length, `Link has no accessible name on ${path}: ${await link.evaluate(n => n.outerHTML.slice(0, 120))}`).toBeGreaterThan(0);
+      expect(
+        name.length,
+        `Link has no accessible name on ${path}: ${await link.evaluate((n) => n.outerHTML.slice(0, 120))}`,
+      ).toBeGreaterThan(0);
     }
   });
 

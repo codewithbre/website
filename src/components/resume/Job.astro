@@ -15,14 +15,20 @@ const { title, company, companyNote, location, period, bullets } = Astro.props;
   <header class="job__header">
     <div class="job__meta">
       <h3 class="job__title">{title}</h3>
-      {(company || location) && (
-        <p class="job__company">
-          {company && <strong>{company}</strong>}
-          {companyNote && <span class="job__company-note">{companyNote}</span>}
-          {company && location && <span class="job__sep" aria-hidden="true">&middot;</span>}
-          {location && <span>{location}</span>}
-        </p>
-      )}
+      {
+        (company || location) && (
+          <p class="job__company">
+            {company && <strong>{company}</strong>}
+            {companyNote && <span class="job__company-note">{companyNote}</span>}
+            {company && location && (
+              <span class="job__sep" aria-hidden="true">
+                &middot;
+              </span>
+            )}
+            {location && <span>{location}</span>}
+          </p>
+        )
+      }
     </div>
     <time class="job__period">{period}</time>
   </header>

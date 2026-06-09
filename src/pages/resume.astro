@@ -18,33 +18,57 @@ import '../styles/resume.css';
       <Headline role="Software Engineer | Agentic AI Engineer" />
       <h1 class="resume-name">codewithbre</h1>
       <div class="resume-links">
-        <a href="https://linkedin.com/in/codewithbre" target="_blank" rel="noopener noreferrer" class="resume-link" aria-label="LinkedIn (opens in new tab)">
+        <a
+          href="https://linkedin.com/in/codewithbre"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="resume-link"
+          aria-label="LinkedIn (opens in new tab)"
+        >
           <Icon name="simple-icons:linkedin" size={13} aria-hidden="true" />
           LinkedIn
         </a>
         <span aria-hidden="true">&middot;</span>
-        <a href="https://substack.com/@codewithbre" target="_blank" rel="noopener noreferrer" class="resume-link" aria-label="Substack (opens in new tab)">
+        <a
+          href="https://substack.com/@codewithbre"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="resume-link"
+          aria-label="Substack (opens in new tab)"
+        >
           <Icon name="simple-icons:substack" size={13} aria-hidden="true" />
           Substack
         </a>
         <span aria-hidden="true">&middot;</span>
-        <a href="https://github.com/codewithbre" target="_blank" rel="noopener noreferrer" class="resume-link" aria-label="GitHub (opens in new tab)">
+        <a
+          href="https://github.com/codewithbre"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="resume-link"
+          aria-label="GitHub (opens in new tab)"
+        >
           <Icon name="simple-icons:github" size={13} aria-hidden="true" />
           GitHub
         </a>
         <span aria-hidden="true">&middot;</span>
-        <a href="/codewithbre_resume.pdf" class="resume-link resume-download" download="codewithbre_resume.pdf">
+        <a
+          href="/codewithbre_resume.pdf"
+          class="resume-link resume-download"
+          download="codewithbre_resume.pdf"
+        >
           <Icon name="lucide:download" size={13} aria-hidden="true" />
           Download PDF
         </a>
       </div>
     </div>
 
-    <Profile sentences={[
-      'Frontend-focused software engineer building agentic AI solutions.',
-      'Engineers the agentic layer: workflow design, constraints, and the verification logic that keeps AI solutions reliable.',
-      'Engineers the frontend layer, centering architecture, accessibility, and user experience.',
-    ]} />
+    <Profile
+      sentences={[
+        'Frontend-focused software engineer building agentic AI solutions.',
+        'Engineers the agentic layer: workflow design, constraints, and the verification logic that keeps AI solutions reliable.',
+        'Engineers the frontend layer, centering architecture, accessibility, and user experience.',
+      ]}
+    />
     <Experience />
     <Skills />
     <Education />
@@ -63,7 +87,7 @@ import '../styles/resume.css';
         }
       });
     },
-    { threshold: 0.06, rootMargin: '0px 0px -24px 0px' }
+    { threshold: 0.06, rootMargin: '0px 0px -24px 0px' },
   );
 
   sections.forEach((el) => {

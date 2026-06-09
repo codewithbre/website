@@ -8,9 +8,7 @@ const { sentences } = Astro.props;
 
 <section class="profile resume-section" aria-labelledby="profile-heading">
   <h2 class="section-label" id="profile-heading">Profile</h2>
-  {sentences.map((sentence) => (
-    <p class="profile__text">{sentence}</p>
-  ))}
+  {sentences.map((sentence) => <p class="profile__text">{sentence}</p>)}
 </section>
 
 <style>

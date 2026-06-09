@@ -27,7 +27,9 @@
   .resume-section.will-reveal {
     opacity: 0;
     transform: translateY(10px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
   }
 
   .resume-section.is-visible {

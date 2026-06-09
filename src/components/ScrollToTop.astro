@@ -9,9 +9,13 @@ import { Icon } from 'astro-icon/components';
 <script>
   const btn = document.getElementById('scroll-top');
   if (btn) {
-    window.addEventListener('scroll', () => {
-      btn.classList.toggle('visible', window.scrollY > 400);
-    }, { passive: true });
+    window.addEventListener(
+      'scroll',
+      () => {
+        btn.classList.toggle('visible', window.scrollY > 400);
+      },
+      { passive: true },
+    );
     btn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
@@ -35,7 +39,10 @@ import { Icon } from 'astro-icon/components';
     cursor: pointer;
     opacity: 0;
     pointer-events: none;
-    transition: opacity var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+    transition:
+      opacity var(--transition-fast),
+      color var(--transition-fast),
+      border-color var(--transition-fast);
     z-index: 20;
   }
 

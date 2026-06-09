@@ -1,8 +1,8 @@
 ---
-title: "How I Built a System for My AI Coding Tools"
+title: 'How I Built a System for My AI Coding Tools'
 description: "A Developer's System for AI-Assisted Engineering with Claude Code"
 publishDate: 2026-03-06
-substackUrl: "https://codewithbre.substack.com/p/how-i-built-a-system-for-my-ai-coding"
+substackUrl: 'https://codewithbre.substack.com/p/how-i-built-a-system-for-my-ai-coding'
 draft: false
 ---
 
@@ -66,7 +66,7 @@ Claude Code's configuration system has three levels, and understanding how they 
 
 The global `CLAUDE.md` is the most important file in the system. It's what makes behavior deterministic instead of model-dependent. Without it, the model does what feels right for the session. With it, the model does what you've defined. Those are very different things, with the key distinction being predictability. This shapes your agents into personal assistants who have been trained to work with you. It should be a very detailed and direct document: the absolute guardrail file that will trickle down. Global rules define the baseline. Project rules override downward when the project needs a different behavior. Local settings are your personal preferences. Each level inherits from the one above, never the other way around.
 
-*NOTE: With some configuration, the same principles translate smoothly to Cursor. The global CLAUDE.md can serve as the foundation for Cursor's always-applied rules. The commands can become Cursor skills. The agents can become Cursor subagents. The workflow loop stays consistent regardless of which surface you're on.*
+_NOTE: With some configuration, the same principles translate smoothly to Cursor. The global CLAUDE.md can serve as the foundation for Cursor's always-applied rules. The commands can become Cursor skills. The agents can become Cursor subagents. The workflow loop stays consistent regardless of which surface you're on._
 
 ## Workflow Commands
 
