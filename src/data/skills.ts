@@ -16,7 +16,7 @@ export interface SkillRow {
 
 export const skills: SkillRow[] = [
   {
-    category: 'Programming Languages & Frameworks',
+    category: 'Programming',
     icon: 'lucide:code-2',
     groups: [
       {
