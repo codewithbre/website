@@ -155,7 +155,7 @@ export const skills: SkillRow[] = [
         chips: [
           { name: 'Snyk', icon: 'simple-icons:snyk' },
           { name: 'LaunchDarkly' },
-          { name: 'DataDog', icon: 'simple-icons:datadog' },
+          { name: 'Datadog', icon: 'simple-icons:datadog' },
         ],
       },
     ],

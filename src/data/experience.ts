@@ -30,7 +30,7 @@ export const jobs: Job[] = [
     bullets: [
       'Maintained the shared Storybook component library for the Flow BU. Developed reusable widgets, standardized components, and enforced UI consistency across consuming bounded contexts.',
       'Raised frontend test coverage to a minimum of 70% across React repos by backfilling unit and integration tests. Led the accessibility compliance initiative bringing all customer-facing UI to WCAG AA standards, enforced through axe-core and CI pipeline checks.',
-      'Led frontend feature initiatives to build, consolidate, and retire report across the application. Demoed new functionality and alpha/beta releases to go-to-market stakeholders and CSM teams before release.',
+      'Led frontend feature initiatives to build, consolidate, and retire reports across the application. Demoed new functionality and alpha/beta releases to go-to-market stakeholders and CSM teams before release.',
       'Mentored interns and conducted frontend engineering interviews; served as teaching assistant for a Pluralsight × Year Up web development program.',
     ],
   },
