@@ -149,7 +149,7 @@ code {
   width: 100%;
   max-width: var(--max-width-content);
   margin: 0 auto;
-  padding: 0 var(--space-6);
+  padding-inline: var(--space-6);
 }
 
 .container--wide {
