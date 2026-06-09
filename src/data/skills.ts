@@ -79,7 +79,7 @@ export const skills: SkillRow[] = [
         label: 'Practices',
         chips: [
           { name: 'Model Context Protocol (MCP)' },
-          { name: 'Skills-based architecture' },
+          { name: 'Retrieval-Augmented Generation (RAG)' },
           { name: 'Agentic workflow design' },
           { name: 'Multi-agent orchestration' },
         ],

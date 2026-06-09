@@ -15,11 +15,11 @@ export const jobs: Job[] = [
     location: 'Remote',
     period: 'Feb 2025 – Present',
     bullets: [
-      'Led frontend development on a AI chatbot assistant built on AWS Bedrock with a Python skills-based architecture, extending the agent tool surface by integrating product APIs and documentation so the LLM generates accurate, grounded metric responses with supporting data visualizations for end users.',
-      'Translate high-level product directives into shipped AI features, conducting product and AI design pattern research to inform architecture, then owning implementation from POC to production.',
+      'Leading the design and development of a customer-facing AI chatbot interface on AWS Bedrock, contributing to backend Python action groups that invoke product APIs and internal skills to generate accurate, grounded responses with supporting data visualizations.',
+      'Translating high-level product directives into shipped AI features, conducting product and AI design pattern research to inform architecture, then owning implementation from POC to production.',
       'Developed shared agentic skills and workflows for the internal engineering harness, including a component migration skill for the acquisition process, PR review skills that enforce coding standards, and an implementation skill that breaks down work into structured, verifiable PRs aligned with per-repo coding conventions.',
       "Supported a 6-month post-acquisition migration of frontend package registries, internal design systems and repos into Appfire's ecosystem, addressing rebranding, support tickets, and app stability.",
-      'Supporting ongoing React dependency management, Snyk vulnerability remediation, and AI developer tooling integration across the platform.',
+      'Supporting ongoing frontend dependency management, Snyk vulnerability remediation, and AI developer tooling integrations across the platform.',
     ],
   },
   {
