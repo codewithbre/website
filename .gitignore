@@ -17,6 +17,7 @@ blob-report/
 # Local editor, AI tooling, and workspace files
 .cursor/
 .claude/
+CLAUDE.md
 .vscode/
 .idea/
 *.code-workspace
