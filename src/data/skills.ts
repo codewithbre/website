@@ -127,7 +127,7 @@ export const skills: SkillRow[] = [
     ],
   },
   {
-    category: 'CI/CD & Tooling',
+    category: 'DevOps',
     icon: 'lucide:git-branch',
     groups: [
       {
