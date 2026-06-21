@@ -167,7 +167,7 @@ export const skills: SkillRow[] = [
     icon: 'lucide:server',
     groups: [
       {
-        label: 'Hosting',
+        label: 'Deployment',
         chips: [
           { name: 'AWS', icon: 'simple-icons:amazonaws' },
           { name: 'Vercel', icon: 'simple-icons:vercel' },
