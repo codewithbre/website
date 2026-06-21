@@ -33,7 +33,6 @@ export const skills: SkillRow[] = [
           { name: 'React', icon: 'simple-icons:react' },
           { name: 'Next.js', icon: 'simple-icons:nextdotjs' },
           { name: 'Astro', icon: 'simple-icons:astro' },
-          { name: 'Electron', icon: 'simple-icons:electron' },
           { name: 'Storybook', icon: 'simple-icons:storybook' },
         ],
       },
@@ -70,9 +69,9 @@ export const skills: SkillRow[] = [
           { name: 'AWS Bedrock', icon: 'simple-icons:amazonaws' },
           { name: 'AWS Strands', icon: 'simple-icons:amazonaws' },
           { name: 'Anthropic SDK', icon: 'simple-icons:anthropic' },
+          { name: 'LangChain', icon: 'simple-icons:langchain' },
           { name: 'Claude Code', icon: 'simple-icons:anthropic' },
           { name: 'Cursor', icon: 'simple-icons:cursor' },
-          { name: 'GitHub Copilot', icon: 'simple-icons:github' },
         ],
       },
       {
@@ -93,15 +92,12 @@ export const skills: SkillRow[] = [
       {
         label: 'Architecture patterns',
         chips: [
+          { name: 'Micro frontends' },
           { name: 'Module federation' },
-          { name: 'Bounded contexts' },
-          { name: 'Domain driven design' },
+          { name: 'Monorepo' },
           { name: 'Design system development' },
+          { name: 'React state management' },
         ],
-      },
-      {
-        label: 'State management',
-        chips: [{ name: 'React Context' }, { name: 'Nanostores' }, { name: 'React Query' }],
       },
     ],
   },
@@ -131,7 +127,7 @@ export const skills: SkillRow[] = [
     ],
   },
   {
-    category: 'CI/CD & Tooling',
+    category: 'DevOps',
     icon: 'lucide:git-branch',
     groups: [
       {
@@ -156,6 +152,7 @@ export const skills: SkillRow[] = [
           { name: 'Snyk', icon: 'simple-icons:snyk' },
           { name: 'LaunchDarkly' },
           { name: 'Datadog', icon: 'simple-icons:datadog' },
+          { name: 'LangSmith' },
         ],
       },
     ],
@@ -165,11 +162,12 @@ export const skills: SkillRow[] = [
     icon: 'lucide:server',
     groups: [
       {
-        label: 'Hosting',
+        label: 'Deployment',
         chips: [
           { name: 'AWS', icon: 'simple-icons:amazonaws' },
           { name: 'Vercel', icon: 'simple-icons:vercel' },
           { name: 'Cloudflare Pages', icon: 'simple-icons:cloudflare' },
+          { name: 'Cloudflare D1', icon: 'simple-icons:cloudflare' },
           { name: 'Netlify', icon: 'simple-icons:netlify' },
         ],
       },
@@ -200,7 +198,6 @@ export const brandColors: Record<string, string> = {
   'simple-icons:css3': '#1572B6',
   'simple-icons:react': '#149eca',
   'simple-icons:astro': '#FF5D01',
-  'simple-icons:electron': '#47848F',
   'simple-icons:tailwindcss': '#06B6D4',
   'simple-icons:styledcomponents': '#DB7093',
   'simple-icons:sass': '#CC6699',
@@ -220,6 +217,7 @@ export const brandColors: Record<string, string> = {
   'simple-icons:eslint': '#4B32C3',
   'simple-icons:prettier': '#F7B93E',
   'simple-icons:datadog': '#632CA6',
+  'simple-icons:langchain': '#1C3C3C',
   'simple-icons:cloudflare': '#F38020',
   'simple-icons:netlify': '#00C7B7',
   'simple-icons:nodedotjs': '#5FA04E',

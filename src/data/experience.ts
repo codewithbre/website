@@ -15,8 +15,8 @@ export const jobs: Job[] = [
     location: 'Remote',
     period: 'Feb 2025 – Present',
     bullets: [
-      'Leading the design and development of a customer-facing AI chatbot interface on AWS Bedrock, contributing to backend Python action groups that invoke product APIs and internal skills to generate accurate, grounded responses with supporting data visualizations.',
-      'Translating high-level product directives into shipped AI features, conducting product and AI design pattern research to inform architecture, then owning implementation from POC to production.',
+      'Led end-to-end design and development of a customer-facing AI chatbot interface using AWS Strands Agents SDK orchestrating Bedrock-hosted models, owning UX patterns, interaction design, and Python tools decorated with docstrings as the schema layer to generate accurate, grounded responses with supporting data visualizations.',
+      'Translating high-level product directives into shipped AI features, leading initiative planning and technical research to define scope and architecture, then owning implementation from POC to production.',
       'Developed shared agentic skills and workflows for the internal engineering harness, including a component migration skill for the acquisition process, PR review skills that enforce coding standards, and an implementation skill that breaks down work into structured, verifiable PRs aligned with per-repo coding conventions.',
       "Supported a 6-month post-acquisition migration of frontend package registries, internal design systems and repos into Appfire's ecosystem, addressing rebranding, support tickets, and app stability.",
       'Supporting ongoing frontend dependency management, Snyk vulnerability remediation, and AI developer tooling integrations across the platform.',
