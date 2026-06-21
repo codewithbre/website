@@ -93,15 +93,12 @@ export const skills: SkillRow[] = [
       {
         label: 'Architecture patterns',
         chips: [
+          { name: 'Micro frontends' },
           { name: 'Module federation' },
-          { name: 'Bounded contexts' },
-          { name: 'Domain driven design' },
+          { name: 'Monorepo' },
           { name: 'Design system development' },
+          { name: 'React state management' },
         ],
-      },
-      {
-        label: 'State management',
-        chips: [{ name: 'React Context' }, { name: 'Nanostores' }, { name: 'React Query' }],
       },
     ],
   },
