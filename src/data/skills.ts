@@ -73,7 +73,6 @@ export const skills: SkillRow[] = [
           { name: 'LangSmith' },
           { name: 'Claude Code', icon: 'simple-icons:anthropic' },
           { name: 'Cursor', icon: 'simple-icons:cursor' },
-          { name: 'GitHub Copilot', icon: 'simple-icons:github' },
         ],
       },
       {
