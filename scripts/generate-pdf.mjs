@@ -26,7 +26,7 @@ await page.pdf({
   path: outputPath,
   format: 'A4',
   printBackground: true,
-  margin: { top: '0.3in', right: '0.5in', bottom: '0.3in', left: '0.5in' },
+  margin: { top: '0.2in', right: '0.5in', bottom: '0.2in', left: '0.5in' },
 });
 
 await browser.close();
