@@ -10,8 +10,7 @@ export interface Job {
 export const jobs: Job[] = [
   {
     title: 'Software Engineer - AI Tooling & Frontend Platform',
-    company: 'Appfire Flow',
-    companyNote: '(fka Pluralsight Flow)',
+    company: 'Appfire',
     location: 'Remote',
     period: 'Feb 2025 – Present',
     bullets: [
